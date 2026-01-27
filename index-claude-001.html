@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>相宜绍庭艺术行动 | Xiangyi Shaoting Art Action</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --cream: #FAF8F5;
+      --cream-dark: #F5F2EE;
+      --charcoal: #3D3D3D;
+      --gray-dark: #5C5C5C;
+      --gray-medium: #7A7A7A;
+      --gray-light: #9C9C9C;
+      --gray-lighter: #BEBEBE;
+      --border: #E8E4DF;
+      --accent: #D4C4B0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      background-color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+    
+    ::selection {
+      background-color: var(--accent);
+      color: var(--charcoal);
+    }
+    
+    .font-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 2rem;
+      transition: all 0.5s ease;
+    }
+    
+    .nav.scrolled {
+      background-color: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(20px);
+    }
+    
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+    }
+    
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 200;
+      color: var(--gray-dark);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--charcoal);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--charcoal);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Sections */
+    .section {
+      padding: 6rem 2rem;
+    }
+    
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 1rem;
+    }
+    
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 2rem;
+    }
+    
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--gray-medium);
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+    
+    .hero-description {
+      max-width: 600px;
+      font-size: 1.125rem;
+      font-weight: 200;
+      color: var(--gray-dark);
+      line-height: 2;
+    }
+    
+    .hero-scroll {
+      margin-top: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .hero-scroll-line {
+      width: 3rem;
+      height: 1px;
+      background-color: var(--accent);
+    }
+    
+    .hero-scroll-text {
+      font-size: 0.75rem;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+    
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    
+    @media (min-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+      }
+    }
+    
+    .creator {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .creator-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    
+    .creator-role {
+      font-size: 0.875rem;
+      font-weight: 200;
+      letter-spacing: 0.05em;
+      color: var(--gray-light);
+      margin-bottom: 1.5rem;
+    }
+    
+    .creator-bio {
+      font-size: 1rem;
+      font-weight: 200;
+      color: var(--gray-dark);
+      line-height: 2.2;
+    }
+    
+    /* Philosophy */
+    .philosophy {
+      background-color: var(--cream-dark);
+      text-align: center;
+    }
+    
+    .philosophy-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .philosophy-line {
+      width: 4rem;
+      height: 1px;
+      background-color: var(--accent);
+      margin: 3rem auto 0;
+    }
+    
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    @media (min-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+    }
+    
+    .project-card {
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-4px);
+    }
+    
+    .project-image {
+      aspect-ratio: 4 / 3;
+      background-color: #EAE6E1;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .project-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      color: var(--accent);
+      transition: transform 0.7s ease;
+    }
+    
+    .project-card:hover .project-number {
+      transform: scale(1.05);
+    }
+    
+    .project-category {
+      font-size: 0.75rem;
+      font-weight: 200;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 0.75rem;
+    }
+    
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+    
+    .project-title-en {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--gray-medium);
+      margin-bottom: 1rem;
+    }
+    
+    .project-description {
+      font-size: 0.9375rem;
+      font-weight: 200;
+      color: var(--gray-dark);
+      line-height: 1.9;
+    }
+    
+    .project-materials {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 200;
+      letter-spacing: 0.03em;
+      color: var(--gray-light);
+    }
+    
+    /* Initiative */
+    .initiative {
+      background-color: var(--charcoal);
+    }
+    
+    .initiative-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    @media (min-width: 1024px) {
+      .initiative-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+    }
+    
+    .initiative-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.3;
+      margin-bottom: 2rem;
+    }
+    
+    .initiative-description {
+      font-size: 1.125rem;
+      font-weight: 200;
+      color: #B0B0B0;
+      line-height: 2;
+      margin-bottom: 2rem;
+    }
+    
+    .initiative-label {
+      font-size: 0.875rem;
+      font-weight: 200;
+      color: var(--gray-medium);
+    }
+    
+    .initiative-circle {
+      width: 16rem;
+      height: 16rem;
+      border-radius: 50%;
+      border: 1px solid rgba(250, 248, 245, 0.1);
+      background-color: rgba(250, 248, 245, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    
+    .initiative-circle-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+    
+    /* Works */
+    .works-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    @media (min-width: 768px) {
+      .works-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+    }
+    
+    .works-year {
+      font-size: 0.875rem;
+      font-weight: 200;
+      color: var(--gray-light);
+    }
+    
+    .works-list {
+      border-top: 1px solid var(--border);
+    }
+    
+    .work-item {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background-color 0.4s ease;
+    }
+    
+    @media (min-width: 768px) {
+      .work-item {
+        grid-template-columns: 3rem 1fr 1fr 8rem 2rem;
+        gap: 2rem;
+        align-items: center;
+      }
+    }
+    
+    .work-item:hover {
+      background-color: rgba(61, 61, 61, 0.03);
+    }
+    
+    .work-number {
+      font-size: 0.875rem;
+      font-weight: 200;
+      color: var(--gray-lighter);
+    }
+    
+    .work-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+    
+    .work-title-en {
+      font-size: 0.875rem;
+      font-weight: 200;
+      color: var(--gray-light);
+      margin-top: 0.25rem;
+    }
+    
+    .work-material, .work-size, .work-arrow {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .work-material, .work-size, .work-arrow {
+        display: block;
+      }
+      
+      .work-material {
+        font-size: 0.875rem;
+        font-weight: 200;
+        color: var(--gray-medium);
+      }
+      
+      .work-size {
+        font-size: 0.875rem;
+        font-weight: 200;
+        color: var(--gray-light);
+      }
+      
+      .work-arrow {
+        font-size: 1.125rem;
+        color: var(--gray-lighter);
+        text-align: right;
+      }
+    }
+    
+    /* Exhibition */
+    .exhibition {
+      background-color: var(--cream-dark);
+    }
+    
+    .exhibition-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    @media (min-width: 1024px) {
+      .exhibition-grid {
+        grid-template-columns: 1fr 2fr;
+        gap: 4rem;
+      }
+    }
+    
+    .exhibition-subtitle {
+      font-size: 1rem;
+      font-weight: 200;
+      color: var(--gray-medium);
+      margin-top: 1rem;
+    }
+    
+    .exhibition-description {
+      font-size: 1.125rem;
+      font-weight: 200;
+      color: var(--gray-dark);
+      line-height: 2.2;
+      margin-bottom: 3rem;
+    }
+    
+    .exhibition-details {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    @media (min-width: 640px) {
+      .exhibition-details {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+    }
+    
+    .exhibition-detail-label {
+      font-size: 0.75rem;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 0.5rem;
+    }
+    
+    .exhibition-detail-value {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--charcoal);
+    }
+    
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+      }
+    }
+    
+    .contact-description {
+      font-size: 1.125rem;
+      font-weight: 200;
+      color: var(--gray-dark);
+      line-height: 2;
+    }
+    
+    .contact-channels {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+    }
+    
+    .contact-channel-label {
+      font-size: 0.75rem;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 0.75rem;
+    }
+    
+    .contact-channel-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--charcoal);
+    }
+    
+    .footer-logo-en {
+      font-size: 0.875rem;
+      font-weight: 200;
+      color: var(--gray-light);
+      margin-top: 0.25rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .footer-link {
+      font-size: 0.875rem;
+      font-weight: 200;
+      color: var(--gray-medium);
+      text-decoration: none;
+      position: relative;
+    }
+    
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--charcoal);
+      transition: width 0.3s ease;
+    }
+    
+    .footer-link:hover::after {
+      width: 100%;
+    }
+    
+    .footer-copyright {
+      font-size: 0.75rem;
+      font-weight: 200;
+      color: var(--gray-lighter);
+    }
+    
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">相宜绍庭</div>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">关于</a>
+        <a href="#projects" class="nav-link">行动</a>
+        <a href="#works" class="nav-link">作品</a>
+        <a href="#contact" class="nav-link">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="section-label fade-in">Sustainable Public Art</p>
+      <h1 class="hero-title fade-in">相宜绍庭</h1>
+      <h2 class="hero-subtitle fade-in">艺术行动</h2>
+      <p class="hero-description fade-in">
+        以废弃、闲置、回收材料及自然材料为媒介，<br>
+        结合在地灵感和当下生活，创作雕塑与互动装置。<br>
+        让公共艺术不仅「被观看」，更能被激活、被共同参与、被持续共鸣。
+      </p>
+      <div class="hero-scroll fade-in">
+        <div class="hero-scroll-line"></div>
+        <span class="hero-scroll-text">Scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="section-label fade-in">About Us</p>
+          <h2 class="section-title fade-in">创作者</h2>
+        </div>
+        <div>
+          <div class="creator fade-in">
+            <h3 class="creator-name">李相宜</h3>
+            <p class="creator-role">策划人 · 社会观察者</p>
+            <p class="creator-bio">
+              公益人、策划人、社会观察者，擅长将社会议题转化为可感知、可参与、可传播的行动。
+              英国萨里大学国际活动管理硕士，拥有8年CSR企业社会责任经验，长期专注环境保护与社会参与。
+            </p>
+          </div>
+          <div class="creator fade-in">
+            <h3 class="creator-name">吴绍庭</h3>
+            <p class="creator-role">公共艺术设计师 · 雕塑创作者</p>
+            <p class="creator-bio">
+              材料实验者，注重环保与人文精神，作品强调人与空间、人与环境的互动关系。
+              毕业于南京艺术学院公共艺术系，曾任雕塑家钱为教授助手达8年，倡导使用再生环保材料，减少环境负担。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="section philosophy">
+    <div class="section-inner">
+      <p class="section-label fade-in">Philosophy</p>
+      <blockquote class="philosophy-quote fade-in">
+        "用身边的材料，<br>
+        与附近和当下在一起"
+      </blockquote>
+      <div class="philosophy-line"></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="section-inner">
+      <p class="section-label fade-in">Art Actions</p>
+      <h2 class="section-title fade-in">艺术行动</h2>
+      
+      <div class="projects-grid">
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <span class="project-number">01</span>
+          </div>
+          <p class="project-category">公共艺术 × 社群巡游</p>
+          <h3 class="project-title">游龙出没</h3>
+          <p class="project-title-en">Dragon Parade</p>
+          <p class="project-description">
+            用闲置厨具打造龙头，用废旧雨伞共创伞面龙身。与不同人、在不同时间与场域，一起做龙、接龙、游龙。
+          </p>
+          <p class="project-materials">材料：废旧铝锅、废旧雨伞、回收塑料瓶、旧布</p>
+        </div>
+        
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <span class="project-number">02</span>
+          </div>
+          <p class="project-category">公共艺术 × 舞台装置</p>
+          <h3 class="project-title">放烟花</h3>
+          <p class="project-title-en">Fireworks</p>
+          <p class="project-description">
+            以自然材料为"烟火"，以大众共创为"火焰"，为每个人打开一座可使用、可参与的自然舞台。
+          </p>
+          <p class="project-materials">材料：竹材、芦荻花、乌桕果、茶树枝、银杏叶</p>
+        </div>
+        
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <span class="project-number">03</span>
+          </div>
+          <p class="project-category">公共艺术 × 光影装置</p>
+          <h3 class="project-title">夜露</h3>
+          <p class="project-title-en">Night Dew</p>
+          <p class="project-description">
+            竹身弯曲律动，光影随之起伏。夜间的露珠，仿佛大地的呼吸。倒映水面，如月缓缓降落。
+          </p>
+          <p class="project-materials">材料：竹材、铁、呼吸灯</p>
+        </div>
+        
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <span class="project-number">04</span>
+          </div>
+          <p class="project-category">公共艺术 × 艺术展览</p>
+          <h3 class="project-title">母亲与大地</h3>
+          <p class="project-title-en">Mother and Earth</p>
+          <p class="project-description">
+            一只放大的母鸡，静静伏在稻田中央，像大地般温厚，张开羽翼守护着依偎的小鸡。
+          </p>
+          <p class="project-materials">材料：稻草、竹材</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Initiative -->
+  <section class="section initiative">
+    <div class="section-inner">
+      <div class="initiative-grid">
+        <div>
+          <p class="section-label fade-in">Social Initiative</p>
+          <h2 class="initiative-title fade-in">
+            走路不吸烟<br>
+            吸烟不走路
+          </h2>
+          <p class="initiative-description fade-in">
+            通过日常倡议与艺术共创，引发公众对二手烟问题的关注，推动更友善的公共呼吸空间。
+          </p>
+          <p class="initiative-label fade-in">NSwW · No Smoking while Walking</p>
+        </div>
+        <div class="fade-in">
+          <div class="initiative-circle">
+            <span class="initiative-circle-text">NSwW</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Works -->
+  <section id="works" class="section">
+    <div class="section-inner">
+      <div class="works-header">
+        <div>
+          <p class="section-label fade-in">Selected Works</p>
+          <h2 class="section-title fade-in">作品集</h2>
+        </div>
+        <p class="works-year fade-in">2023 — 2025</p>
+      </div>
+      
+      <div class="works-list">
+        <div class="work-item fade-in">
+          <span class="work-number">01</span>
+          <div>
+            <h3 class="work-title">蘑菇</h3>
+            <p class="work-title-en">Mushroom</p>
+          </div>
+          <p class="work-material">随手捡拾的垃圾、竹子</p>
+          <p class="work-size">180×180×200cm</p>
+          <span class="work-arrow">→</span>
+        </div>
+        
+        <div class="work-item fade-in">
+          <span class="work-number">02</span>
+          <div>
+            <h3 class="work-title">候鸟之家</h3>
+            <p class="work-title-en">Migrant Bird Home</p>
+          </div>
+          <p class="work-material">水泥、铁、废酒瓶、沙漠树枝</p>
+          <p class="work-size">200×160×600cm</p>
+          <span class="work-arrow">→</span>
+        </div>
+        
+        <div class="work-item fade-in">
+          <span class="work-number">03</span>
+          <div>
+            <h3 class="work-title">天马行空</h3>
+            <p class="work-title-en">Pegasus</p>
+          </div>
+          <p class="work-material">铁、不锈钢、铝、尼龙网</p>
+          <p class="work-size">170×57×300cm</p>
+          <span class="work-arrow">→</span>
+        </div>
+        
+        <div class="work-item fade-in">
+          <span class="work-number">04</span>
+          <div>
+            <h3 class="work-title">共生</h3>
+            <p class="work-title-en">Symbiosis</p>
+          </div>
+          <p class="work-material">树根、镜面不锈钢</p>
+          <p class="work-size">40×25×65cm</p>
+          <span class="work-arrow">→</span>
+        </div>
+        
+        <div class="work-item fade-in">
+          <span class="work-number">05</span>
+          <div>
+            <h3 class="work-title">斑马，斑马</h3>
+            <p class="work-title-en">Zebra, Zebra</p>
+          </div>
+          <p class="work-material">损坏丢弃的斑马、废弃金属</p>
+          <p class="work-size">250×80×105cm</p>
+          <span class="work-arrow">→</span>
+        </div>
+        
+        <div class="work-item fade-in">
+          <span class="work-number">06</span>
+          <div>
+            <h3 class="work-title">屋企</h3>
+            <p class="work-title-en">Home</p>
+          </div>
+          <p class="work-material">捡拾的树根</p>
+          <p class="work-size">22×19×34cm</p>
+          <span class="work-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exhibition -->
+  <section class="section exhibition">
+    <div class="section-inner">
+      <div class="exhibition-grid">
+        <div>
+          <p class="section-label fade-in">Current Exhibition</p>
+          <h2 class="section-title fade-in">母亲与大地</h2>
+          <p class="exhibition-subtitle fade-in">稻香文化艺术展</p>
+        </div>
+        <div>
+          <p class="exhibition-description fade-in">
+            该文化艺术展以稻田为舞台，用竹材、稻草等自然元素重塑乡土意象。
+            从不同角度展现乡村生活：母鸡与小鸡，猫头鹰的夜间守望，稻草人的坚定守护，
+            太阳环与放烟花装置的光与喜悦。让人感受到生命、守护与丰收的温度。
+          </p>
+          <div class="exhibition-details fade-in">
+            <div>
+              <p class="exhibition-detail-label">展期</p>
+              <p class="exhibition-detail-value">2025.10 — 2026.10</p>
+            </div>
+            <div>
+              <p class="exhibition-detail-label">地点</p>
+              <p class="exhibition-detail-value">上海市金山区新泾村</p>
+            </div>
+            <div>
+              <p class="exhibition-detail-label">作品数</p>
+              <p class="exhibition-detail-value">5件装置作品</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div>
+          <p class="section-label fade-in">Get in Touch</p>
+          <h2 class="section-title fade-in">联系我们</h2>
+          <p class="contact-description fade-in">
+            如果您对我们的艺术行动感兴趣，<br>
+            欢迎与我们探讨合作的可能。
+          </p>
+        </div>
+        <div class="contact-channels">
+          <div class="fade-in">
+            <p class="contact-channel-label">公众号</p>
+            <p class="contact-channel-value">相宜说话 NSwW</p>
+          </div>
+          <div class="fade-in">
+            <p class="contact-channel-label">小红书</p>
+            <p class="contact-channel-value">相宜穿啥</p>
+          </div>
+          <div class="fade-in">
+            <p class="contact-channel-label">视频号</p>
+            <p class="contact-channel-value">相宜绍庭艺术行动</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-logo">相宜绍庭艺术行动</p>
+        <p class="footer-logo-en">Xiangyi Shaoting Art Action</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about" class="footer-link">关于</a>
+        <a href="#projects" class="footer-link">行动</a>
+        <a href="#works" class="footer-link">作品</a>
+        <a href="#contact" class="footer-link">联系</a>
+      </div>
+      <p class="footer-copyright">© 2025 Xiangyi Shaoting Art Action</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation scroll effect
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Fade-in animation on scroll
+    var fadeElements = document.querySelectorAll('.fade-in');
+    
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, index) {
+        if (entry.isIntersecting) {
+          setTimeout(function() {
+            entry.target.classList.add('visible');
+          }, index * 100);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    fadeElements.forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

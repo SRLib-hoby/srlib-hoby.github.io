@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiangyi Shaoting Art Action</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Custom Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#f5f5f7]">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, Fragment } = React;
+
+        // --- ICONS (SVG Paths) ---
+        // Replacing Lucide imports with direct SVGs for standalone HTML compatibility
+        const Icon = ({ path, size = 24, className = "" }) => (
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width={size} 
+                height={size} 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className={className}
+            >
+                {path}
+            </svg>
+        );
+
+        const Icons = {
+            Menu: <Fragment><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></Fragment>,
+            X: <Fragment><path d="M18 6 6 18" /><path d="m6 6 12 12" /></Fragment>,
+            ArrowRight: <Fragment><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></Fragment>,
+            ArrowUpRight: <Fragment><path d="M7 7h10v10" /><path d="M7 17 17 7" /></Fragment>,
+            ChevronRight: <path d="m9 18 6-6-6-6" />,
+            Recycle: <Fragment><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" /><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12" /><path d="m14 16-3 3 3 3" /><path d="M8.293 13.596 7.196 9.5 3.1 7.48" /><path d="m22 7-3-3-3 3" /><path d="M13.7 9.111 21.049 12.662a1.82 1.82 0 0 0 1.859-.068 1.782 1.782 0 0 0 .802-1.634V2.827a1.782 1.782 0 0 0-.792-1.64 1.822 1.822 0 0 0-1.858-.078L13.7 4.909" /></Fragment>,
+            Users: <Fragment><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></Fragment>,
+            MessageCircle: <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" />
+        };
+
+        const TEAM = {
+            name: "相宜绍庭艺术行动",
+            enName: "Xiangyi Shaoting Art Action",
+            tagline: "Redefining Waste. Reconnecting People.",
+            description: "A creative team dedicated to sustainable public art installations and participatory art actions. We use discarded, idle, recycled, and natural materials as media, combining local inspiration with contemporary life.",
+            founders: [
+                {
+                    name: "Li Xiangyi",
+                    role: "Curator & Social Observer",
+                    desc: "Specializes in translating social issues into perceptible, participatory actions. 8 years of CSR experience. Master in International Event Management, University of Surrey.",
+                },
+                {
+                    name: "Wu Shaoting",
+                    role: "Public Art Designer & Sculptor",
+                    desc: "Focuses on environmental protection and humanistic spirit. 8 years as assistant to sculptor Professor Qian Wei. Graduated from Nanjing University of the Arts.",
+                }
+            ]
+        };
+
+        const CATEGORIES = ["All", "Installations", "Sculptures", "Actions"];
+
+        const ARTWORKS = [
+            {
+                id: 1,
+                title: "Touring Dragon",
+                cnTitle: "游龙出没",
+                category: "Installations",
+                materials: "Aluminum pots, Waste umbrellas, Recycled plastic",
+                dimensions: "Head: 150×60×80cm | Body: Variable",
+                location: "Various Locations",
+                description: "Created using idle kitchenware and waste umbrellas. A participatory 'dragon' that invites the public to join the parade, creating interaction and imagination in different spaces.",
+                color: "from-gray-100 to-gray-300"
+            },
+            {
+                id: 2,
+                title: "Setting Off Fireworks",
+                cnTitle: "放烟花",
+                category: "Installations",
+                materials: "Bamboo, Reeds, Tallow berries, Tree roots",
+                dimensions: "1200×1000×1300cm",
+                location: "Zhejiang Feihu Village",
+                description: "Using natural materials as 'fireworks' and public co-creation as 'flames'. An accessible, participatory natural stage that celebrates small certainties in life.",
+                color: "from-amber-50 to-orange-100"
+            },
+            {
+                id: 3,
+                title: "Mother Hen",
+                cnTitle: "母亲与大地",
+                category: "Installations",
+                materials: "Rice straw, Bamboo",
+                dimensions: "500×300×400cm",
+                location: "Shanghai Xinjing Village",
+                description: "A magnified mother hen resting in the center of a rice field. Like the earth itself—warm and thick—spreading wings to protect the chicks.",
+                color: "from-yellow-50 to-yellow-100"
+            },
+            {
+                id: 4,
+                title: "Night Dew",
+                cnTitle: "夜露",
+                category: "Installations",
+                materials: "Bamboo, Iron, Breathing lights",
+                dimensions: "800×450×500cm",
+                location: "Hangzhou Qingshan Village",
+                description: "Bamboo body curving with rhythm, light rising and falling like breath. Dewdrops at night, slowly landing like the moon reflected in water.",
+                color: "from-blue-50 to-indigo-100"
+            },
+            {
+                id: 5,
+                title: "Migratory Bird Home",
+                cnTitle: "候鸟之家",
+                category: "Sculptures",
+                materials: "Cement, Iron, Waste bottles, Desert branches",
+                dimensions: "200×160×600cm",
+                location: "Desert / Public Space",
+                description: "A resting place for birds and humans alike. Look up at the light, look down for the shadow. Co-existing with nature.",
+                color: "from-stone-100 to-stone-200"
+            },
+            {
+                id: 6,
+                title: "Sky Castle",
+                cnTitle: "空中城堡",
+                category: "Actions",
+                materials: "Aluminum net, Cotton",
+                dimensions: "Height: 3m",
+                location: "Shapotou",
+                description: "An ethereal structure floating in the air. Built using industrial materials to create a dreamlike, cloud-like shelter.",
+                color: "from-slate-50 to-slate-200"
+            },
+            {
+                id: 7,
+                title: "Mushroom",
+                cnTitle: "蘑菇",
+                category: "Sculptures",
+                materials: "Collected waste, Bamboo",
+                dimensions: "180×180×200cm",
+                location: "Various",
+                description: "Mushrooms are nature's recyclers. We imitate them, growing something different in neglected corners using waste.",
+                color: "from-red-50 to-pink-50"
+            },
+            {
+                id: 8,
+                title: "Zebra, Zebra",
+                cnTitle: "斑马，斑马",
+                category: "Sculptures",
+                materials: "Discarded toy zebra, Waste metal",
+                dimensions: "250×80×105cm",
+                location: "Public Park",
+                description: "A zebra with no children to play with, falling asleep. A commentary on discarded childhoods and lonely spaces.",
+                color: "from-gray-50 to-gray-200"
+            }
+        ];
+
+        /* --- COMPONENTS --- */
+
+        const NavItem = ({ children, onClick, active }) => (
+            <button 
+                onClick={onClick}
+                className={`text-sm font-medium transition-colors duration-300 ${active ? 'text-black' : 'text-gray-500 hover:text-black'}`}
+            >
+                {children}
+            </button>
+        );
+
+        const SectionHeading = ({ children, subtitle }) => (
+            <div className="mb-12 md:mb-20 px-6 max-w-7xl mx-auto">
+                <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-gray-900 mb-4">{children}</h2>
+                {subtitle && <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl">{subtitle}</p>}
+            </div>
+        );
+
+        const BentoCard = ({ title, subtitle, className, children, dark = false }) => (
+            <div className={`rounded-3xl p-8 md:p-10 relative overflow-hidden transition-all duration-500 hover:scale-[1.01] ${dark ? 'bg-[#1d1d1f] text-white' : 'bg-white text-gray-900'} ${className}`}>
+                <div className="relative z-10 h-full flex flex-col justify-between">
+                <div>
+                    <h3 className="text-sm font-semibold uppercase tracking-wider opacity-70 mb-2">{subtitle}</h3>
+                    <h4 className="text-2xl md:text-3xl font-bold tracking-tight">{title}</h4>
+                </div>
+                <div className="mt-8">
+                    {children}
+                </div>
+                </div>
+            </div>
+        );
+
+        const DetailRow = ({ label, value }) => (
+            <div className="flex flex-col md:flex-row md:items-baseline border-b border-gray-100 py-4 last:border-0">
+                <span className="text-xs font-semibold uppercase tracking-widest text-gray-400 w-32 shrink-0">{label}</span>
+                <span className="text-base md:text-lg font-light text-gray-800 mt-1 md:mt-0">{value}</span>
+            </div>
+        );
+
+        function XiangyiShaoting() {
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [activeTab, setActiveTab] = useState("All");
+            const [selectedArt, setSelectedArt] = useState(null);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setIsScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const filteredArt = activeTab === "All" ? ARTWORKS : ARTWORKS.filter(a => a.category === activeTab);
+
+            return (
+                <div className="min-h-screen pb-20">
+                
+                {/* --- NAVIGATION --- */ }
+                <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+                    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                    <div className="text-xl font-bold tracking-tighter z-50 flex items-center gap-2">
+                        <span className="w-5 h-5 bg-black rounded-full block"></span>
+                        {TEAM.enName}
+                    </div>
+
+                    {/* Desktop Nav */}
+                    <div className="hidden md:flex gap-8">
+                        <NavItem onClick={() => document.getElementById('work').scrollIntoView({ behavior: 'smooth'})}>Work</NavItem>
+                        <NavItem onClick={() => document.getElementById('philosophy').scrollIntoView({ behavior: 'smooth'})}>Philosophy</NavItem>
+                        <NavItem onClick={() => document.getElementById('team').scrollIntoView({ behavior: 'smooth'})}>Team</NavItem>
+                        <NavItem onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth'})}>Contact</NavItem>
+                    </div>
+
+                    {/* Mobile Toggle */}
+                    <button className="md:hidden z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                        <Icon path={mobileMenuOpen ? Icons.X : Icons.Menu} />
+                    </button>
+                    </div>
+
+                    {/* Mobile Menu Overlay */}
+                    {mobileMenuOpen && (
+                    <div className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 text-2xl animate-in fade-in slide-in-from-bottom-10 duration-300">
+                        <button onClick={() => { setMobileMenuOpen(false); document.getElementById('work').scrollIntoView(); }}>Work</button>
+                        <button onClick={() => { setMobileMenuOpen(false); document.getElementById('philosophy').scrollIntoView(); }}>Philosophy</button>
+                        <button onClick={() => { setMobileMenuOpen(false); document.getElementById('team').scrollIntoView(); }}>Team</button>
+                    </div>
+                    )}
+                </nav>
+
+                {/* --- HERO SECTION --- */}
+                <header className="relative pt-40 pb-20 md:pt-60 md:pb-40 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
+                    <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]">
+                    Art from Waste.<br/>
+                    <span className="text-gray-400">Beauty from Nature.</span>
+                    </h1>
+                    <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed mb-10">
+                    We transform discarded materials into sustainable public art installations that invite everyone to participate.
+                    </p>
+                    <div className="flex gap-4">
+                    <button 
+                        onClick={() => document.getElementById('work').scrollIntoView({ behavior: 'smooth'})}
+                        className="bg-[#0071e3] hover:bg-[#0077ed] text-white px-8 py-3 rounded-full font-medium transition-all hover:scale-105 active:scale-95"
+                    >
+                        View Projects
+                    </button>
+                    <button 
+                        onClick={() => document.getElementById('philosophy').scrollIntoView({ behavior: 'smooth'})}
+                        className="text-[#0071e3] hover:text-[#0077ed] px-8 py-3 font-medium flex items-center gap-2 group"
+                    >
+                        Our Mission <Icon path={Icons.ArrowRight} size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    </div>
+                </header>
+
+                {/* --- PHILOSOPHY (BENTO GRID) --- */}
+                <section id="philosophy" className="px-6 pb-32 max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <BentoCard title="Sustainability" subtitle="Core Value" className="md:col-span-2 min-h-[400px] bg-gradient-to-br from-green-50 to-emerald-100">
+                        <div className="absolute right-0 bottom-0 w-64 h-64 opacity-10">
+                            <Icon path={Icons.Recycle} size={256} />
+                        </div>
+                        <p className="text-xl font-light leading-relaxed max-w-md mt-4 text-gray-700">
+                        We use discarded, idle, recycled, and natural materials as our primary medium. Every piece reduces environmental burden.
+                        </p>
+                    </BentoCard>
+                    
+                    <BentoCard title="Participation" subtitle="Action" dark className="min-h-[400px]">
+                        <div className="flex flex-col gap-4 mt-4">
+                        <div className="flex items-center gap-4">
+                            <Icon path={Icons.Users} className="text-blue-400" size={32} />
+                            <p className="text-gray-300 font-light">Art is not just to be watched, but to be activated.</p>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <Icon path={Icons.MessageCircle} className="text-blue-400" size={32} />
+                            <p className="text-gray-300 font-light">Creating resonance through shared creation.</p>
+                        </div>
+                        </div>
+                    </BentoCard>
+
+                    <BentoCard title="Local Inspiration" subtitle="Context" className="min-h-[300px] bg-white">
+                        <p className="text-gray-500 font-light mt-2">
+                        Deeply rooted in the environment. We combine local culture with spatial context to create temperature.
+                        </p>
+                        <div className="mt-8 flex gap-2">
+                        <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-500">Villages</span>
+                        <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-500">Cities</span>
+                        <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-500">Fields</span>
+                        </div>
+                    </BentoCard>
+
+                    <BentoCard title="Transformation" subtitle="Process" className="md:col-span-2 min-h-[300px] bg-gray-50">
+                        <div className="grid grid-cols-3 gap-4 mt-8">
+                            <div className="text-center">
+                            <div className="w-12 h-12 bg-gray-200 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-gray-400">1</div>
+                            <div className="text-sm font-medium">Material Collection</div>
+                            </div>
+                            <div className="text-center">
+                            <div className="w-12 h-12 bg-gray-200 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-gray-400">2</div>
+                            <div className="text-sm font-medium">Design & Plan</div>
+                            </div>
+                            <div className="text-center">
+                            <div className="w-12 h-12 bg-gray-200 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-gray-400">3</div>
+                            <div className="text-sm font-medium">Co-Creation</div>
+                            </div>
+                        </div>
+                    </BentoCard>
+                    </div>
+                </section>
+
+                {/* --- WORK GALLERY --- */}
+                <section id="work" className="bg-white py-32 rounded-t-[3rem] shadow-[0_-20px_40px_rgba(0,0,0,0.02)]">
+                    <SectionHeading subtitle="A collection of sculptures and installations born from waste and nature.">
+                    Selected Works
+                    </SectionHeading>
+                    
+                    {/* Category Filters */}
+                    <div className="px-6 max-w-7xl mx-auto mb-12 flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+                    {CATEGORIES.map(cat => (
+                        <button
+                        key={cat}
+                        onClick={() => setActiveTab(cat)}
+                        className={`px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+                            activeTab === cat 
+                            ? 'bg-black text-white shadow-lg' 
+                            : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                        }`}
+                        >
+                        {cat}
+                        </button>
+                    ))}
+                    </div>
+
+                    {/* Grid */}
+                    <div className="px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    {filteredArt.map((art) => (
+                        <div 
+                        key={art.id}
+                        onClick={() => setSelectedArt(art)}
+                        className="group cursor-pointer"
+                        >
+                        {/* Image Placeholder Area */}
+                        <div className={`aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-gradient-to-br ${art.color} relative`}>
+                            <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:scale-105 transition-transform duration-700">
+                            {/* Abstract Representation */}
+                            <div className="text-9xl opacity-20 select-none font-serif italic">
+                                {art.title.charAt(0)}
+                            </div>
+                            </div>
+                            <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur rounded-full p-3 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                            <Icon path={Icons.ArrowUpRight} size={20} />
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between items-start">
+                            <div>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-[#0071e3] transition-colors">{art.title}</h3>
+                            <p className="text-gray-400 font-light">{art.cnTitle}</p>
+                            </div>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400 border border-gray-200 rounded-full px-3 py-1">
+                            {art.category}
+                            </span>
+                        </div>
+                        </div>
+                    ))}
+                    </div>
+                </section>
+
+                {/* --- TEAM SECTION --- */}
+                <section id="team" className="py-32 px-6 max-w-7xl mx-auto">
+                    <SectionHeading subtitle="The minds behind the movement.">
+                    Creators
+                    </SectionHeading>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    {TEAM.founders.map((founder, idx) => (
+                        <div key={idx} className="flex flex-col gap-6">
+                            <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
+                            <div className="w-1/3 h-full bg-black"></div>
+                            </div>
+                            <div>
+                            <h3 className="text-3xl font-bold mb-2">{founder.name}</h3>
+                            <p className="text-[#0071e3] font-medium mb-4">{founder.role}</p>
+                            <p className="text-gray-600 leading-relaxed font-light text-lg">
+                                {founder.desc}
+                            </p>
+                            </div>
+                        </div>
+                    ))}
+                    </div>
+                </section>
+
+                {/* --- FOOTER / CONTACT --- */}
+                <footer id="contact" className="bg-[#1d1d1f] text-white py-24">
+                    <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
+                        <div>
+                        <h2 className="text-4xl font-bold mb-6">Let's Create Together</h2>
+                        <p className="text-gray-400 text-lg font-light max-w-md">
+                            We are looking for shopping centers, parks, ESG/CSR brands, and community organizations to collaborate with.
+                        </p>
+                        </div>
+                        <div className="flex flex-col gap-8 justify-center">
+                            <div className="flex items-start gap-4">
+                            <div className="bg-white/10 p-3 rounded-xl">
+                                <Icon path={Icons.MessageCircle} size={24} />
+                            </div>
+                            <div>
+                                <h4 className="font-semibold mb-1">WeChat</h4>
+                                <p className="text-gray-400 font-mono">Wtta100</p>
+                            </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                            <div className="bg-white/10 p-3 rounded-xl">
+                                <Icon path={Icons.Users} size={24} />
+                            </div>
+                            <div>
+                                <h4 className="font-semibold mb-1">Social Media</h4>
+                                <p className="text-gray-400">Search "相宜绍庭艺术行动" on XiaoHongShu, Douyin, Video Account</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between text-sm text-gray-500">
+                        <p>&copy; {new Date().getFullYear()} {TEAM.enName}. All rights reserved.</p>
+                        <div className="flex gap-6 mt-4 md:mt-0">
+                            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                            <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
+                        </div>
+                    </div>
+                    </div>
+                </footer>
+
+                {/* --- DETAIL MODAL --- */}
+                {selectedArt && (
+                    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8">
+                    <div 
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+                        onClick={() => setSelectedArt(null)}
+                    ></div>
+                    
+                    <div className="bg-white w-full max-w-4xl max-h-full md:max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl relative z-70 animate-in fade-in zoom-in-95 duration-300">
+                        <button 
+                        onClick={() => setSelectedArt(null)}
+                        className="absolute top-6 right-6 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors z-10"
+                        >
+                        <Icon path={Icons.X} size={20} />
+                        </button>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2">
+                            {/* Visual Side */}
+                            <div className={`h-64 md:h-auto bg-gradient-to-br ${selectedArt.color} p-12 flex items-center justify-center`}>
+                            <div className="text-9xl opacity-20 font-serif italic text-black mix-blend-overlay">
+                                {selectedArt.title.charAt(0)}
+                            </div>
+                            </div>
+
+                            {/* Content Side */}
+                            <div className="p-10 md:p-14">
+                            <div className="mb-8">
+                                <span className="text-[#0071e3] font-semibold text-sm tracking-wide uppercase mb-2 block">{selectedArt.category}</span>
+                                <h2 className="text-4xl font-bold text-gray-900 mb-2">{selectedArt.title}</h2>
+                                <h3 className="text-2xl font-light text-gray-400">{selectedArt.cnTitle}</h3>
+                            </div>
+
+                            <p className="text-lg text-gray-600 leading-relaxed mb-10 font-light">
+                                {selectedArt.description}
+                            </p>
+
+                            <div className="space-y-2">
+                                <h4 className="text-sm font-bold uppercase tracking-widest text-gray-900 mb-4 border-b border-gray-100 pb-2">Specifications</h4>
+                                <DetailRow label="Materials" value={selectedArt.materials} />
+                                <DetailRow label="Dimensions" value={selectedArt.dimensions} />
+                                <DetailRow label="Location" value={selectedArt.location} />
+                            </div>
+
+                            <div className="mt-10 pt-6 border-t border-gray-100">
+                                <button className="w-full bg-black text-white py-4 rounded-xl font-medium hover:bg-gray-800 transition-colors flex justify-center items-center gap-2">
+                                    Inquire about this work <Icon path={Icons.ArrowRight} size={16} />
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                )}
+
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<XiangyiShaoting />);
+    </script>
+</body>
+</html>
