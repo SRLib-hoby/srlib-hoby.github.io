@@ -1,49 +1,277 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Home</title>
-
-  <style>
-    :root { color-scheme: light dark; }
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; margin: 0; }
-    .nav {
-      position: sticky; top: 0;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(127,127,127,.25);
-      background: rgba(255,255,255,.75);
-    }
-    @media (prefers-color-scheme: dark) { .nav { background: rgba(20,20,20,.6); } }
-    .nav__brand { font-weight: 700; text-decoration: none; color: inherit; }
-    .nav__links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .nav__links a {
-      text-decoration: none; color: inherit;
-      padding: 6px 10px; border-radius: 999px;
-      border: 1px solid rgba(127,127,127,.25);
-    }
-    .nav__links a:hover { transform: translateY(-1px); }
-    main { max-width: 980px; margin: 24px auto; padding: 0 16px; }
-    .hint { opacity: .75; font-size: 14px; }
-  </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Art for the Earth — A nonprofit merging sculpture with environmental advocacy and community empowerment. Founded by sculptor Shaoting and event planner Xiangyi."/>
+  <title>Art for the Earth — Where Sculpture Meets Purpose</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-  <nav class="nav">
-    <a class="nav__brand" href="./index.html">Home</a>
-    <div class="nav__links">
-      <a href="./index.html">Default</a>
-      <a href="./index-claude-001.html">Demo-CD001</a>
-      <a href="./index-gemini-001.html">Demo-GM001</a>
+  <header class="hero" id="home">
+    <div class="hero__bg">
+      <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E6%94%BE%E7%83%9F%E8%8A%B1%E3%80%8B/%E6%94%BE%E7%83%9F%E8%8A%B1-5%E5%90%881.JPG" alt="Sculpture installation — fireworks series by the artist duo"/>
     </div>
-  </nav>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">Art for the Earth</h1>
+      <p class="hero__tagline">Where Sculpture Meets Purpose &middot; Where Nature Meets Community</p>
+    </div>
+    <a href="#about" class="hero__scroll" aria-label="Scroll down">
+      <span>Explore</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </header>
 
   <main>
-    <h1>Default Page</h1>
-    <p class="hint">For demo collection.</p>
-    <!-- here is the content -->
+    <section class="about" id="about">
+      <div class="container">
+        <span class="section-label reveal">Who We Are</span>
+        <h2 class="section-title reveal">Two Paths, One Purpose</h2>
+        <p class="section-desc reveal">A sculptor who shapes discarded materials into living art, and an event planner who weaves communities together through meaningful action. Together, they prove that creativity and compassion can change the world.</p>
+        <div class="about__grid">
+          <div class="founder-card reveal reveal-delay-1">
+            <div class="founder-card__img">
+              <img src="https://img.845548.xyz/%E6%88%91%E4%BB%AC%E6%98%AF%E8%B0%81/%E5%9B%A2%E9%98%9F%E6%88%90%E5%91%98-%E7%BB%8D%E5%BA%AD.JPG" alt="Shaoting — sculptor and co-founder" loading="lazy"/>
+            </div>
+            <div class="founder-card__body">
+              <h3 class="founder-card__name">Shaoting &#183; 绍庭</h3>
+              <p class="founder-card__role">Sculptor &amp; Environmental Artist</p>
+              <p class="founder-card__bio">An independent sculptor who transforms reclaimed wood, scrap metal, stone, and discarded everyday objects into powerful works of art. His pieces explore the dialogue between humanity and nature — raw, honest, and deeply rooted in the land.</p>
+            </div>
+          </div>
+          <div class="founder-card reveal reveal-delay-2">
+            <div class="founder-card__img">
+              <img src="https://img.845548.xyz/%E6%88%91%E4%BB%AC%E6%98%AF%E8%B0%81/%E5%9B%A2%E9%98%9F%E6%88%90%E5%91%98-%E7%9B%B8%E5%AE%9C.JPG" alt="Xiangyi — public welfare event planner and co-founder" loading="lazy"/>
+            </div>
+            <div class="founder-card__body">
+              <h3 class="founder-card__name">Xiangyi &#183; 相宜</h3>
+              <p class="founder-card__role">Public Welfare Event Planner</p>
+              <p class="founder-card__bio">A passionate organizer who designs community-driven charity events, environmental awareness campaigns, and grassroots social initiatives. She believes in the power of gathering people together to spark lasting change.</p>
+            </div>
+          </div>
+        </div>
+        <div class="about__together reveal">
+          <img src="https://img.845548.xyz/%E6%88%91%E4%BB%AC%E6%98%AF%E8%B0%81/%E5%9B%A2%E9%98%9F%E5%90%88%E5%BD%B1.JPG" alt="Shaoting and Xiangyi together — the founding duo" loading="lazy"/>
+          <div class="about__together-overlay">
+            <p class="about__together-text">&ldquo;We use art not to decorate the world, but to reconnect it — to the earth, to each other, and to what truly matters.&rdquo;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission" id="mission">
+      <div class="container">
+        <span class="section-label reveal">Our Mission</span>
+        <h2 class="section-title reveal">Art as a Force for Good</h2>
+        <p class="section-desc reveal">We believe that art is not a luxury — it is a language. A language that speaks for the voiceless, heals the overlooked, and inspires communities to reimagine their relationship with the natural world.</p>
+        <div class="mission__pillars">
+          <div class="pillar reveal reveal-delay-1">
+            <div class="pillar__icon"><svg viewBox="0 0 56 56"><path d="M28 6c-2 8-10 14-18 16 8 2 16 8 18 16 2-8 10-14 18-16-8-2-16-8-18-16z"/><path d="M28 42v8M24 48h8"/></svg></div>
+            <h3 class="pillar__title">Environmental Sustainability</h3>
+            <p class="pillar__desc">Transforming waste into wonder. Every sculpture begins with materials the world forgot.</p>
+          </div>
+          <div class="pillar reveal reveal-delay-2">
+            <div class="pillar__icon"><svg viewBox="0 0 56 56"><circle cx="28" cy="20" r="8"/><path d="M16 44c0-8 5.4-14 12-14s12 6 12 14"/><path d="M40 20c3 0 6 2 6 6s-3 6-6 6"/><path d="M46 44c0-5-2.5-9-6-11"/></svg></div>
+            <h3 class="pillar__title">Community Empowerment</h3>
+            <p class="pillar__desc">Art workshops, co-creation projects, and events that bring people together to build something greater.</p>
+          </div>
+          <div class="pillar reveal reveal-delay-3">
+            <div class="pillar__icon"><svg viewBox="0 0 56 56"><path d="M28 8l6 12 14 2-10 10 2 14-12-6-12 6 2-14L8 22l14-2z"/></svg></div>
+            <h3 class="pillar__title">Art as Social Catalyst</h3>
+            <p class="pillar__desc">Using creativity to spark dialogue about environmental responsibility and social change.</p>
+          </div>
+          <div class="pillar reveal reveal-delay-4">
+            <div class="pillar__icon"><svg viewBox="0 0 56 56"><path d="M14 42V20l14-12 14 12v22H14z"/><path d="M22 42V30h12v12"/><path d="M28 8v-2M8 28H6M50 28h-2"/></svg></div>
+            <h3 class="pillar__title">Cultural Preservation</h3>
+            <p class="pillar__desc">Honoring traditional craft and local heritage through contemporary artistic expression.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <span class="section-label reveal">Portfolio</span>
+        <h2 class="section-title reveal">Sculptures &amp; Creations</h2>
+        <p class="section-desc reveal">Each piece begins with what others discard — driftwood, scrap metal, abandoned objects — and is reborn into art that speaks of nature, memory, and resilience.</p>
+        <div class="gallery">
+          <div class="gallery__item reveal reveal-delay-1" data-title="游龙出没 · Dragon Emerges" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E6%B8%B8%E9%BE%99%E5%87%BA%E6%B2%A1%E3%80%8B/%E5%BA%9F%E5%BC%83%E7%89%A9%E6%B8%B8%E9%BE%99-5%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E6%B8%B8%E9%BE%99%E5%87%BA%E6%B2%A1%E3%80%8B/%E5%BA%9F%E5%BC%83%E7%89%A9%E6%B8%B8%E9%BE%99-5%E5%90%881.JPG" alt="Dragon Emerges — large-scale dragon sculpture made from waste materials" loading="lazy"/>
+            <div class="gallery__caption"><h4>游龙出没 · Dragon Emerges</h4><p>Waste material sculpture series</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-2" data-title="夜露 · Night Dew" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%A4%9C%E9%9C%B2%E3%80%8B/%E5%A4%9C%E9%9C%B2-3%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%A4%9C%E9%9C%B2%E3%80%8B/%E5%A4%9C%E9%9C%B2-3%E5%90%881.JPG" alt="Night Dew — atmospheric mixed media sculpture installation" loading="lazy"/>
+            <div class="gallery__caption"><h4>夜露 · Night Dew</h4><p>Mixed media installation</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-3" data-title="候鸟之家 · Migratory Bird Home" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%80%99%E9%B8%9F%E4%B9%8B%E5%AE%B6%E3%80%8B/%E5%80%99%E9%B8%9F%E4%B9%8B%E5%AE%B6-7%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%80%99%E9%B8%9F%E4%B9%8B%E5%AE%B6%E3%80%8B/%E5%80%99%E9%B8%9F%E4%B9%8B%E5%AE%B6-7%E5%90%881.JPG" alt="Migratory Bird Home — habitat-inspired sculpture installation" loading="lazy"/>
+            <div class="gallery__caption"><h4>候鸟之家 · Migratory Bird Home</h4><p>Environmental installation</p></div>
+          </div>
+          <div class="gallery__item reveal" data-title="放烟花 · Fireworks" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E6%94%BE%E7%83%9F%E8%8A%B1%E3%80%8B/%E6%94%BE%E7%83%9F%E8%8A%B1%E8%88%9E%E5%8F%B0-4%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E6%94%BE%E7%83%9F%E8%8A%B1%E3%80%8B/%E6%94%BE%E7%83%9F%E8%8A%B1%E8%88%9E%E5%8F%B0-4%E5%90%881.JPG" alt="Setting Off Fireworks — dynamic reclaimed material sculpture" loading="lazy"/>
+            <div class="gallery__caption"><h4>放烟花 · Fireworks</h4><p>Reclaimed material sculpture</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-2" data-title="蘑菇 · Mushroom" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E8%98%91%E8%8F%87%E3%80%8B/%E8%98%91%E8%8F%87-6%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E8%98%91%E8%8F%87%E3%80%8B/%E8%98%91%E8%8F%87-6%E5%90%881.JPG" alt="Mushroom — organic form sculpture from natural materials" loading="lazy"/>
+            <div class="gallery__caption"><h4>蘑菇 · Mushroom</h4><p>Organic form sculpture</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-3" data-title="天马行空 · Pegasus" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA%E3%80%8B/%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA-2%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA%E3%80%8B/%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA-2%E5%90%881.JPG" alt="Pegasus — Unbridled Imagination sculptural work" loading="lazy"/>
+            <div class="gallery__caption"><h4>天马行空 · Pegasus</h4><p>Imaginative sculpture</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-1" data-title="斑马，斑马 · Zebra" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E6%96%91%E9%A9%AC%EF%BC%8C%E6%96%91%E9%A9%AC%E3%80%8B/%E6%96%91%E9%A9%AC-2%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E6%96%91%E9%A9%AC%EF%BC%8C%E6%96%91%E9%A9%AC%E3%80%8B/%E6%96%91%E9%A9%AC-2%E5%90%881.JPG" alt="Zebra — playful found-object animal sculpture" loading="lazy"/>
+            <div class="gallery__caption"><h4>斑马，斑马 · Zebra</h4><p>Found object sculpture</p></div>
+          </div>
+          <div class="gallery__item reveal" data-title="颜文梁 · Yan Wenliang" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E9%A2%9C%E6%96%87%E6%A2%81%E3%80%8B/%E9%A2%9C%E6%96%87%E6%A2%81-2%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E9%A2%9C%E6%96%87%E6%A2%81%E3%80%8B/%E9%A2%9C%E6%96%87%E6%A2%81-2%E5%90%881.JPG" alt="Yan Wenliang — portrait sculpture tribute" loading="lazy"/>
+            <div class="gallery__caption"><h4>颜文梁 · Yan Wenliang</h4><p>Portrait sculpture</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-3" data-title="共生 · Symbiosis" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%85%B1%E7%94%9F%E3%80%8B/%E5%85%B1%E7%94%9F-2%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E5%85%B1%E7%94%9F%E3%80%8B/%E5%85%B1%E7%94%9F-2%E5%90%881.JPG" alt="Symbiosis — organic sculpture exploring coexistence" loading="lazy"/>
+            <div class="gallery__caption"><h4>共生 · Symbiosis</h4><p>Organic sculpture</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-1" data-title="稻草人 · Scarecrow" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E7%A8%BB%E9%A6%99%E6%96%87%E5%8C%96%E8%89%BA%E6%9C%AF%E5%B1%95%E7%B3%BB%E5%88%97%E4%BD%9C%E5%93%81/%E7%A8%BB%E8%8D%89%E4%BA%BA-5%E5%90%881.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E7%A8%BB%E9%A6%99%E6%96%87%E5%8C%96%E8%89%BA%E6%9C%AF%E5%B1%95%E7%B3%BB%E5%88%97%E4%BD%9C%E5%93%81/%E7%A8%BB%E8%8D%89%E4%BA%BA-5%E5%90%881.JPG" alt="Scarecrow — rice field art installation series" loading="lazy"/>
+            <div class="gallery__caption"><h4>稻草人 · Scarecrow</h4><p>Rice Art Exhibition series</p></div>
+          </div>
+          <div class="gallery__item reveal reveal-delay-2" data-title="风与我 · Wind and I" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E9%A3%8E%E4%B8%8E%E6%88%91%E3%80%8B/IMG_6422.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E9%A3%8E%E4%B8%8E%E6%88%91%E3%80%8B/IMG_6422.JPG" alt="Wind and I — kinetic sculpture exploring movement" loading="lazy"/>
+            <div class="gallery__caption"><h4>风与我 · Wind and I</h4><p>Kinetic sculpture</p></div>
+          </div>
+          <div class="gallery__item reveal" data-title="猿猴牌头盔 · Ape Helmet" data-src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E7%8C%BF%E7%8C%B4%E7%89%8C%E5%A4%B4%E7%9B%94%E3%80%8B/IMG_6433.JPG">
+            <img src="https://img.845548.xyz/%E4%BD%9C%E5%93%81/%E3%80%8A%E7%8C%BF%E7%8C%B4%E7%89%8C%E5%A4%B4%E7%9B%94%E3%80%8B/IMG_6433.JPG" alt="Ape Brand Helmet — playful found-object headpiece sculpture" loading="lazy"/>
+            <div class="gallery__caption"><h4>猿猴牌头盔 · Ape Helmet</h4><p>Found object art</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="actions" id="actions">
+      <div class="container">
+        <span class="section-label reveal">Art in Action</span>
+        <h2 class="section-title reveal">Community &amp; Events</h2>
+        <p class="section-desc reveal">From rice paddies to village schools, our art goes where it&#39;s needed most — into the heart of communities, sparking conversations that matter.</p>
+        <div class="actions__grid">
+          <div class="action-card reveal reveal-delay-1">
+            <div class="action-card__img"><img src="https://img.845548.xyz/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8-%E3%80%8A%E6%AF%8D%E4%BA%B2%E4%B8%8E%E5%A4%A7%E5%9C%B0%E3%80%8B%E7%A8%BB%E9%A6%99%E6%96%87%E5%8C%96%E8%89%BA%E6%9C%AF%E5%B1%95/%E7%A8%BB%E8%8D%89%E5%B1%95-2%E5%90%881.JPG" alt="Mother and Earth Rice Fragrance Cultural Art Exhibition" loading="lazy"/></div>
+            <div class="action-card__body">
+              <span class="action-card__tag">Exhibition</span>
+              <h3 class="action-card__title">Mother &amp; Earth</h3>
+              <p class="action-card__desc">The Rice Fragrance Cultural Art Exhibition — sculptures and installations celebrating the bond between land, harvest, and motherhood.</p>
+            </div>
+          </div>
+          <div class="action-card reveal reveal-delay-2">
+            <div class="action-card__img"><img src="https://img.845548.xyz/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8-%E4%BB%80%E4%B9%88%E5%9E%83%E5%9C%BE%E8%89%BA%E6%9C%AF/%E4%BB%80%E4%B9%88%E5%9E%83%E5%9C%BE%E8%89%BA%E6%9C%AF-6%E5%90%881.JPG" alt="What Garbage Art community recycling art event" loading="lazy"/></div>
+            <div class="action-card__body">
+              <span class="action-card__tag">Campaign</span>
+              <h3 class="action-card__title">What Garbage Art?</h3>
+              <p class="action-card__desc">A provocative community campaign turning everyday waste into thought-provoking art — challenging how we see what we throw away.</p>
+            </div>
+          </div>
+          <div class="action-card reveal reveal-delay-3">
+            <div class="action-card__img"><img src="https://img.845548.xyz/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8-%E6%9D%91%E5%B0%8F%E8%87%AA%E7%84%B6%E8%89%BA%E6%9C%AF%E5%85%B1%E5%88%9B/%E6%9D%91%E5%B0%8F%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8-6%E5%90%881.JPG" alt="Village School Nature Art Co-creation workshop" loading="lazy"/></div>
+            <div class="action-card__body">
+              <span class="action-card__tag">Workshop</span>
+              <h3 class="action-card__title">Village School Art</h3>
+              <p class="action-card__desc">Nature art co-creation workshops with rural school children — planting seeds of environmental awareness through hands-on creativity.</p>
+            </div>
+          </div>
+          <div class="action-card reveal">
+            <div class="action-card__img"><img src="https://img.845548.xyz/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8-%E8%B5%B0%E8%B7%AF%E4%B8%8D%E5%90%B8%E7%83%9F/%E8%B5%B0%E8%B7%AF%E4%B8%8D%E5%90%B8%E7%83%9F-4%E5%90%881.JPG" alt="No Smoking While Walking public health art campaign" loading="lazy"/></div>
+            <div class="action-card__body">
+              <span class="action-card__tag">Advocacy</span>
+              <h3 class="action-card__title">No Smoking Walk</h3>
+              <p class="action-card__desc">An art-driven public health campaign using sculpture and street art to promote smoke-free public spaces.</p>
+            </div>
+          </div>
+          <div class="action-card reveal reveal-delay-2">
+            <div class="action-card__img"><img src="https://img.845548.xyz/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8-%E6%B8%B8%E9%BE%99%E5%87%BA%E6%B2%A1/%E5%BA%9F%E5%BC%83%E7%89%A9%E6%B8%B8%E9%BE%99-3%E5%90%881.JPG" alt="Dragon Emerges community event" loading="lazy"/></div>
+            <div class="action-card__body">
+              <span class="action-card__tag">Festival</span>
+              <h3 class="action-card__title">Dragon Emerges</h3>
+              <p class="action-card__desc">A spectacular community festival featuring large-scale dragon sculptures crafted entirely from reclaimed waste materials.</p>
+            </div>
+          </div>
+          <div class="action-card reveal reveal-delay-3">
+            <div class="action-card__img"><img src="https://img.845548.xyz/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8/%E8%89%BA%E6%9C%AF%E8%A1%8C%E5%8A%A8-%E6%94%BE%E7%83%9F%E8%8A%B1%E7%B3%BB%E5%88%97/IMG_6363.JPG" alt="Fireworks Series community sculpture event" loading="lazy"/></div>
+            <div class="action-card__body">
+              <span class="action-card__tag">Community</span>
+              <h3 class="action-card__title">Fireworks Series</h3>
+              <p class="action-card__desc">Interactive sculpture events where communities come together to create and celebrate — art that lights up the spirit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact" id="impact">
+      <div class="container">
+        <span class="section-label reveal">Our Impact</span>
+        <h2 class="section-title reveal">By the Numbers</h2>
+        <div class="impact__grid">
+          <div class="stat reveal reveal-delay-1"><div class="stat__number" data-target="26">0</div><div class="stat__label">Sculpture Series Created</div></div>
+          <div class="stat reveal reveal-delay-2"><div class="stat__number" data-target="6">0</div><div class="stat__label">Community Events Organized</div></div>
+          <div class="stat reveal reveal-delay-3"><div class="stat__number" data-target="200" data-suffix="+">0</div><div class="stat__label">Artworks from Recycled Materials</div></div>
+          <div class="stat reveal reveal-delay-4"><div class="stat__number" data-target="1000" data-suffix="+">0</div><div class="stat__label">Community Members Reached</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="involve" id="involve">
+      <div class="container">
+        <span class="section-label reveal">Join Us</span>
+        <h2 class="section-title reveal">Be Part of the Story</h2>
+        <p class="section-desc reveal" style="margin-left:auto;margin-right:auto;text-align:center">Every great movement begins with a single step. Whether you create, contribute, or simply share our story — you become part of something beautiful.</p>
+        <div class="involve__cards">
+          <div class="involve-card reveal reveal-delay-1">
+            <div class="involve-card__icon"><svg viewBox="0 0 48 48"><path d="M24 42S6 28 6 18a10 10 0 0118-6 10 10 0 0118 6c0 10-18 24-18 24z" stroke-linejoin="round"/></svg></div>
+            <h3 class="involve-card__title">Support Our Work</h3>
+            <p class="involve-card__desc">Your contribution helps us create more art from waste, run more community workshops, and reach more people who need beauty in their lives.</p>
+            <a href="mailto:hello@artfortheearth.org" class="btn btn--primary">Donate</a>
+          </div>
+          <div class="involve-card reveal reveal-delay-2">
+            <div class="involve-card__icon"><svg viewBox="0 0 48 48"><path d="M16 20v-4a8 8 0 0116 0v4"/><rect x="10" y="20" width="28" height="22" rx="4"/><circle cx="24" cy="32" r="3"/></svg></div>
+            <h3 class="involve-card__title">Volunteer</h3>
+            <p class="involve-card__desc">Join us at events, help in the studio, or lend your skills to our campaigns. Every hand makes a difference.</p>
+            <a href="mailto:hello@artfortheearth.org" class="btn btn--outline">Get In Touch</a>
+          </div>
+          <div class="involve-card reveal reveal-delay-3">
+            <div class="involve-card__icon"><svg viewBox="0 0 48 48"><path d="M24 4l6 12 14 2-10 10 2 14-12-6-12 6 2-14L4 18l14-2z" stroke-linejoin="round"/></svg></div>
+            <h3 class="involve-card__title">Collaborate</h3>
+            <p class="involve-card__desc">We&#39;re always looking for partners — galleries, schools, communities, and fellow dreamers who share our vision.</p>
+            <a href="mailto:hello@artfortheearth.org" class="btn btn--outline">Partner With Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer id="contact">
+    <div class="container">
+      <h2 class="footer__brand">Art for the Earth</h2>
+      <p class="footer__tagline">Where Sculpture Meets Purpose</p>
+      <div class="footer__social">
+        <a href="#" title="WeChat"><svg viewBox="0 0 24 24"><path d="M8.5 11a1 1 0 110-2 1 1 0 010 2zM5 11a1 1 0 110-2 1 1 0 010 2z"/><path d="M21 15.5c0-2.5-2.5-4.5-5.5-4.5S10 13 10 15.5s2.5 4.5 5.5 4.5c.7 0 1.4-.1 2-.3L20 21l-.8-2.2c1.1-1 1.8-2.1 1.8-3.3z"/><path d="M14 10c0-3-3-5.5-6.5-5.5S1 7 1 10c0 1.5.8 2.8 2 3.8L2 16l3-1.5c1 .3 2 .5 3 .5"/></svg><span>WeChat</span></a>
+        <a href="#" title="Xiaohongshu"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg><span>RED</span></a>
+        <a href="#" title="Douyin"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 108 0 4 4 0 00-8 0z"/><path d="M17 8a4 4 0 004-4"/><path d="M9 17v2a3 3 0 01-6 0v-7a8 8 0 0116 0v1"/></svg><span>Douyin</span></a>
+        <a href="#" title="Video Channel"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><polygon points="10,8 16,12 10,16"/></svg><span>Video</span></a>
+      </div>
+      <div class="footer__email"><a href="mailto:hello@artfortheearth.org">hello@artfortheearth.org</a></div>
+      <p class="footer__bottom">Built with love for the planet &#127807;</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" aria-label="Close">&times;</button>
+    <img class="lightbox__img" src="" alt=""/>
+    <p class="lightbox__caption"></p>
+  </div>
+
+  <script src="js/script.js" defer></script>
 </body>
 </html>
